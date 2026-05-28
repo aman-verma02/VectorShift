@@ -49,10 +49,10 @@ def check_is_dag(nodes: List[NodeSchema], edges: List[EdgeSchema]) -> bool:
     - 2: visited (Black)
     """
    
-    # Create adjacency list for all nodees in the graph
+    # 1. Create adjacency list for all nodees in the graph
     adj : Dict[str, List[str]] = {node.id: [] for node in nodes}
 
-    # Populate the adjacency list with edges 
+    # 2. Populate the adjacency list with edges 
     for edge in edges:
         if edge.source not in adj: 
             adj[edge.source] = []
@@ -60,7 +60,7 @@ def check_is_dag(nodes: List[NodeSchema], edges: List[EdgeSchema]) -> bool:
             adj[edge.target] = []
         adj[edge.source].append(edge.target)
 
-    # Track DFS state of each node: 0 (unvisited), 1 (visiting), 2 (visited)
+    # 3.Track DFS state of each node: 0 (unvisited), 1 (visiting), 2 (visited)
     color: Dict[str, int] = {node_id: 0 for node_id in adj.keys()}
 
 
@@ -76,7 +76,7 @@ def check_is_dag(nodes: List[NodeSchema], edges: List[EdgeSchema]) -> bool:
         color[node_id] = 2  # Mark as visited (Black)
         return False
 
-    # Perform DFS for each unvisited node's starting point in the graph
+    # 4. Perform DFS for each unvisited node's starting point in the graph
     for node in adj.keys():
         if color.get(node, 0) == 0: # If the node is unvisited (White), we need to start a DFS from it.
             if has_cycle(node):
