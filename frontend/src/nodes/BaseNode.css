@@ -1,0 +1,188 @@
+/* BaseNode.css */
+/* Styles for the  BaseNode that will be used across all node types */
+
+:root {
+  --bg-node: #1e293b;
+  --border-node: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-color: #6366f1;
+  --input-bg: #0f172a;
+  --input-border: #334155;
+  --input-focus: #818cf8;
+}
+
+.base-node {
+  background: var(--bg-node);
+  border: 2px solid var(--border-node);
+  border-radius: 12px;
+  min-width: 220px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  font-family: 'Outfit', 'Inter', sans-serif;
+  color: var(--text-primary);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  overflow: visible;                    /* Handles must be visible outside node boundary */
+}
+
+.base-node:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
+  transform: translateY(-2px);
+}
+
+.base-node-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.4);
+  border-bottom: 1.5px solid var(--border-node);
+  border-radius: 10px 10px 0 0;
+  user-select: none;
+}
+
+.base-node-icon {
+  font-size: 1.1rem;
+}
+
+.base-node-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.base-node-id {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.base-node-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.base-node-body label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.base-node-body input,
+.base-node-body select,
+.base-node-body textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.base-node-body input:focus,
+.base-node-body select:focus,
+.base-node-body textarea:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+.base-node-body select {
+  cursor: pointer;
+}
+
+.base-node-description {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+
+.base-node-handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: #38bdf8 !important; /* Default light blue handle */
+  border: 2px solid #0f172a !important;
+  transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+  z-index: 10;
+}
+
+.base-node-handle:hover {
+  transform: scale(1.4);
+  background: #0ea5e9 !important;
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.8);
+}
+
+.handle-target {
+  background: #f43f5e !important; /* Rose for target/input handles */
+}
+.handle-target:hover {
+  background: #e11d48 !important;
+  box-shadow: 0 0 8px rgba(225, 29, 72, 0.8);
+}
+
+.handle-source {
+  background: #10b981 !important; /* Emerald for source/output handles */
+}
+.handle-source:hover {
+  background: #059669 !important;
+  box-shadow: 0 0 8px rgba(5, 150, 105, 0.8);
+}
+
+/* Scheme Color Variations */
+.base-node-input {
+  --border-node: #0369a1;
+  --accent-color: #0ea5e9;
+  --input-focus: #38bdf8;
+}
+.base-node-llm {
+  --border-node: #6d28d9;
+  --accent-color: #8b5cf6;
+  --input-focus: #a78bfa;
+}
+.base-node-output {
+  --border-node: #047857;
+  --accent-color: #10b981;
+  --input-focus: #34d399;
+}
+.base-node-text {
+  --border-node: #b45309;
+  --accent-color: #f59e0b;
+  --input-focus: #fbbf24;
+}
+.base-node-prompt {
+  --border-node: #be185d;
+  --accent-color: #ec4899;
+  --input-focus: #f472b6;
+}
+.base-node-api {
+  --border-node: #0f766e;
+  --accent-color: #14b8a6;
+  --input-focus: #2dd4bf;
+}
+.base-node-math {
+  --border-node: #4338ca;
+  --accent-color: #6366f1;
+  --input-focus: #818cf8;
+}
+.base-node-delay {
+  --border-node: #701a75;
+  --accent-color: #d946ef;
+  --input-focus: #f472b6;
+}
+.base-node-json {
+  --border-node: #1e3a8a;
+  --accent-color: #3b82f6;
+  --input-focus: #60a5fa;
+}
