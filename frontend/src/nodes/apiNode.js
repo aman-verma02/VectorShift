@@ -1,5 +1,6 @@
 // apiNode.js
 // A custom API intergration node using the BaseNode abstraction
+// -----------------------------------------------------------------
 
 
 import {useState} from 'react';
@@ -7,9 +8,8 @@ import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
 
-export const ApiNode = (props) => {
-
-  const { id, data } = props;     // Destructure props to get node id and data (which contains endpoint, method, etc)
+export const ApiNode = ({ id, data }) => {
+    
   const updateNodeField = useStore((state) => state.updateNodeField);  // Get the function to update node data in global store
   
   // Local state initialized with existing data or defaults vlaues
@@ -19,7 +19,7 @@ export const ApiNode = (props) => {
   const handleUrlChange = (e) => {
     const val = e.target.value;
     setUrl(val);
-    updateNodeField(id, { url: val });  // Update global store with new URL
+    updateNodeField(id, 'url', val);  // Update global store with new URL
   };
 
 
@@ -49,7 +49,7 @@ export const ApiNode = (props) => {
     <BaseNode 
       id={id}
       title="API Node"
-      icon="🌐"
+      icon="API NoDe"             // need to add icon in future
       colorScheme="blue"
       handles={handles}
     >
@@ -62,8 +62,8 @@ export const ApiNode = (props) => {
                 placeholder="https://api.com/data"
             />
 
-        <label>
         </label>
+        <label>
             HTTP Method:
             <select value={method} onChange={handleMethodChange}>
                 <option value="GET">GET</option>

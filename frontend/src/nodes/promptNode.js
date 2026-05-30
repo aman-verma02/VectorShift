@@ -1,5 +1,6 @@
+// promptNode.js
 // A custom Prompt node for handling text prompts, using the BaseNode abstraction for consistent UI and behavior across all nodes.
-
+// ---------------------------------------------------------------------------------
 
 
 import { useState, useEffect } from 'react';
@@ -7,36 +8,35 @@ import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
 
-export const PromptNode = (props) => {
-    
-  const { id, data } = props;      // Destructure props to get node id and data (which contains prompt text, etc)
+export const PromptNode = ({ id, data }) => {
 
-  const updateNodeField = useStore((state) => state.updateNodeField);  // Get the function to update node data in global store
+    const updateNodeField = useStore((state) => state.updateNodeField);  // Get the function to update node data in global store
 
-  // Local state initialized with existing data or default values
-  const [currentPrompt, setCurrentPrompt] = useState(data?.prompt || 'Enter your prompt here...');
+    // Local state initialized with existing data or default values
+    const [currentPrompt, setCurrentPrompt] = useState(data?.prompt || 'Enter your prompt here...');
 
-  const [variables, setVariables] = useState([]);
+    const [variables, setVariables] = useState([]);
 
-  useEffect(() => {
-    const reges = /{(.*?)}/g;  // Regex to match {variable} patterns in the prompt
-    const foundVars = [];
-    let match;
+    useEffect(() => {
+        const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g; // Regex to match {variable} patterns in the prompt
+        const foundVars = [];
+        let match;
 
-    while ((match = reges.exec(currPrompt)) !== null) {
-        const varName = match[1];
-        if (!foundVars.includes(varName)) {
-            foundVars.push(varName);
+        while ((match = regex.exec(currentPrompt)) !== null) {
+            const varName = match[1];
+            if (!foundVars.includes(varName)) {
+                foundVars.push(varName);
+            }
         }
-    }
-    setVariables(foundVars);
-    updateNodeField(id, { variables: foundVars });  // Update global store with extracted variables
-    updateNodeField(id, { prompt: currentPrompt });  // Update global store with current prompt text
-  }, [currentPrompt, id, updateNodeField]);
+        setVariables(foundVars);
+        updateNodeField(id, 'variables', foundVars);  // Update global store with extracted variables
+        updateNodeField(id, 'prompt', currentPrompt);
+    // Update global store with current prompt text
+    }, [currentPrompt]);
 
-  const handlePromptChange = (e) => {
-    setCurrentPrompt(e.target.value);
-  }
+    const handlePromptChange = (e) => {
+        setCurrentPrompt(e.target.value);
+    }
 
 
     // Defineing a single output handle for the prompt text and variables
@@ -70,7 +70,7 @@ export const PromptNode = (props) => {
         <BaseNode
             id={id}
             title="Prompt Node"
-            icon="💬"
+            icon="Prompt Node"                           // Need to icon in future
             colorScheme="prompt"
             handles={handles}
         >

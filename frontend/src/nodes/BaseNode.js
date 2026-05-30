@@ -4,7 +4,7 @@
 // ------------------------------------------------------------------
 
 import React from 'react';
-import { Handle } from 'reactflow';
+import { Position, Handle } from 'reactflow';
 import './BaseNode.css'                // Importing node-specific styles
 
 export const BaseNode = ({
@@ -14,9 +14,15 @@ export const BaseNode = ({
   colorScheme = 'default',
   handles = [],
   children,
+  style = {},
+
 }) => {
+
+
+
   return (
-    <div className={`base-node base-node-${colorScheme}`}>
+    <div className={`base-node base-node-${colorScheme}`} style={style}>
+
       {/* Node Header */}
       <div className="base-node-header">
         <span className="base-node-icon">{icon}</span>
