@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { Calculator } from 'lucide-react';
 
 export const MathNode = ({ id, data }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
@@ -45,7 +46,7 @@ export const MathNode = ({ id, data }) => {
     <BaseNode
       id={id}
       title="Math Operator"
-      icon="Maht Operator"                   // need to add icon in future
+      icon={<Calculator size={14} strokeWidth={2} />}
       colorScheme="math"
       handles={handles}
     >

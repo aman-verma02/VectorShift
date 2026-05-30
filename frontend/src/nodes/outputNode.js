@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { ArrowUpFromLine } from 'lucide-react';
 
 
 export const OutputNode = ({ id, data }) => {
@@ -35,7 +36,7 @@ export const OutputNode = ({ id, data }) => {
     <BaseNode
       id={id}
       title="Output"
-      icon="Output"
+      icon={<ArrowUpFromLine size={14} strokeWidth={2} />}
       colorScheme="output"
       handles={handles}
     > 

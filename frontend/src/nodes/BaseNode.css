@@ -1,188 +1,227 @@
 /* BaseNode.css */
 /* Styles for the  BaseNode that will be used across all node types */
-
-:root {
-  --bg-node: #1e293b;
-  --border-node: #334155;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-color: #6366f1;
-  --input-bg: #0f172a;
-  --input-border: #334155;
-  --input-focus: #818cf8;
-}
+/*-----------------------------------------------------------------------------*/
 
 .base-node {
-  background: var(--bg-node);
-  border: 2px solid var(--border-node);
-  border-radius: 12px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
   min-width: 220px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  font-family: 'Outfit', 'Inter', sans-serif;
-  color: var(--text-primary);
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  overflow: visible;                    /* Handles must be visible outside node boundary */
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  color: #e6edf3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  overflow: visible;
+  position: relative;
+}
+
+/* Colored top accent bar - the VectorShift signature */
+.base-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--node-accent, #7c3aed);
+  border-radius: 10px 10px 0 0;
 }
 
 .base-node:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
-  transform: translateY(-2px);
+  border-color: var(--node-accent, #7c3aed);
+  box-shadow: 0 0 0 1px var(--node-accent, #7c3aed),
+  0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
 }
+
+/* Selected state (ReactFlow adds .selected class) */
+.base-node.selected {
+  border-color: var(--node-accent, #7c3aed);
+  box-shadow: 0 0 0 2px var(--node-accent, #7c3aed),
+  0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------- Header -------------------------------------- */
 
 .base-node-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: rgba(15, 23, 42, 0.4);
-  border-bottom: 1.5px solid var(--border-node);
-  border-radius: 10px 10px 0 0;
+  gap: 7px;
+  padding: 10px 12px 9px;
+  border-bottom: 1px solid #21262d;
   user-select: none;
 }
 
 .base-node-icon {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .base-node-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e6edf3;
+  letter-spacing: 0.1px;
+  flex: 1;
 }
 
 .base-node-id {
-  margin-left: auto;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-family: monospace;
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  color: #484f58;
+  background: #0d1117;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid #21262d;
 }
 
+/* ------------------- Body ------------------------------------------------------------- */
+
 .base-node-body {
-  padding: 14px;
+  padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .base-node-body label {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .base-node-body input,
 .base-node-body select,
 .base-node-body textarea {
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  color: var(--text-primary);
-  padding: 6px 10px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  padding: 5px 9px;
   border-radius: 6px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  font-family: 'Inter', sans-serif;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   width: 100%;
   box-sizing: border-box;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
 }
 
 .base-node-body input:focus,
 .base-node-body select:focus,
 .base-node-body textarea:focus {
-  border-color: var(--input-focus);
-  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+  border-color: var(--node-accent, #7c3aed);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
 }
 
 .base-node-body select {
   cursor: pointer;
+  appearance: none;
+  /* for dropdwon arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238b949e' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");   
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+}
+
+.base-node-body input[type="number"] {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+
+.base-node-delete {
+  background: transparent;
+  border: none;
+  color: #484f58;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  margin-left: 4px;
+}
+
+.base-node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--node-accent, #7c3aed);
+}
+
+.base-node-delete:hover {
+  color: #f85149;
+  background: rgba(248, 81, 73, 0.1);
+}
+
+.base-node-body textarea::placeholder {
+  color: #484f58;
+  font-style: italic;
 }
 
 .base-node-description {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  margin: 0;
+  font-size: 0.72rem;
+  color: #8b949e;
+  line-height: 1.45;
+  margin: 2px 0 0;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
+/* --------------------- Handles ---------------------*/
 
 .base-node-handle {
-  width: 10px !important;
-  height: 10px !important;
-  background: #38bdf8 !important; /* Default light blue handle */
-  border: 2px solid #0f172a !important;
-  transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  border: 2px solid #0d1117 !important;
+  transition: transform 0.15s, box-shadow 0.15s !important;
   z-index: 10;
 }
 
 .base-node-handle:hover {
-  transform: scale(1.4);
-  background: #0ea5e9 !important;
-  box-shadow: 0 0 8px rgba(14, 165, 233, 0.8);
-}
-
-.handle-target {
-  background: #f43f5e !important; /* Rose for target/input handles */
-}
-.handle-target:hover {
-  background: #e11d48 !important;
-  box-shadow: 0 0 8px rgba(225, 29, 72, 0.8);
+  transform: scale(1.4) !important;
 }
 
 .handle-source {
-  background: #10b981 !important; /* Emerald for source/output handles */
-}
-.handle-source:hover {
-  background: #059669 !important;
-  box-shadow: 0 0 8px rgba(5, 150, 105, 0.8);
+  background: #10b981 !important;
+  top: 50% !important;
 }
 
-/* Scheme Color Variations */
-.base-node-input {
-  --border-node: #0369a1;
-  --accent-color: #0ea5e9;
-  --input-focus: #38bdf8;
+.handle-source:hover {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.4) !important;
 }
-.base-node-llm {
-  --border-node: #6d28d9;
-  --accent-color: #8b5cf6;
-  --input-focus: #a78bfa;
+
+.handle-target {
+  background: #f43f5e !important;
 }
-.base-node-output {
-  --border-node: #047857;
-  --accent-color: #10b981;
-  --input-focus: #34d399;
+
+.handle-target:hover {
+  background: #fb7185 !important;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.4) !important;
 }
-.base-node-text {
-  --border-node: #b45309;
-  --accent-color: #f59e0b;
-  --input-focus: #fbbf24;
-}
-.base-node-prompt {
-  --border-node: #be185d;
-  --accent-color: #ec4899;
-  --input-focus: #f472b6;
-}
-.base-node-api {
-  --border-node: #0f766e;
-  --accent-color: #14b8a6;
-  --input-focus: #2dd4bf;
-}
-.base-node-math {
-  --border-node: #4338ca;
-  --accent-color: #6366f1;
-  --input-focus: #818cf8;
-}
-.base-node-delay {
-  --border-node: #701a75;
-  --accent-color: #d946ef;
-  --input-focus: #f472b6;
-}
-.base-node-json {
-  --border-node: #1e3a8a;
-  --accent-color: #3b82f6;
-  --input-focus: #60a5fa;
-}
+
+
+
+/* ---------------------- Color Schemes --------------------------- */
+
+.base-node-input   { --node-accent: #2563eb; }
+.base-node-output  { --node-accent: #059669; }
+.base-node-llm     { --node-accent: #7c3aed; }
+.base-node-text    { --node-accent: #d97706; }
+.base-node-prompt  { --node-accent: #db2777; }
+.base-node-api     { --node-accent: #ea580c; }
+.base-node-math    { --node-accent: #0891b2; }
+.base-node-delay   { --node-accent: #7c3aed; }
+.base-node-json    { --node-accent: #16a34a; }

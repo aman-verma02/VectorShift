@@ -2,8 +2,7 @@
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
-
-
+import { Bot } from 'lucide-react';
 
 export const LLMNode = ({ id, data }) => {
 
@@ -32,7 +31,7 @@ export const LLMNode = ({ id, data }) => {
     <BaseNode
       id = {id}
       title = "LLM Node"
-      icon = "LLM Node"
+      icon={<Bot size={14} strokeWidth={2} />}
       colorScheme = "llm"
       handles = {handles}
     >

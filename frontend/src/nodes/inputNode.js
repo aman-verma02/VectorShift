@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { Position } from 'reactflow';
 import {BaseNode} from './BaseNode';
 import { useStore } from '../store';
+import { Inbox } from 'lucide-react';
 
   
 
 export const InputNode = ({ id, data }) => {
+
   const updateNodeField = useStore((state) => state.updateNodeField);
   const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
   const [inputType, setInputType] = useState(data.inputType || 'Text');
@@ -37,7 +39,7 @@ export const InputNode = ({ id, data }) => {
     <BaseNode
       id={id}
       title="Input"
-      icon="Input"          // need to add ivon in future
+      icon={<Inbox size={14} strokeWidth={2} />}          
       colorScheme="input"
       handles={handles}
     >

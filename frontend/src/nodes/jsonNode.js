@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { Braces } from 'lucide-react';
 
 export const JsonNode = ({ id, data }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
@@ -37,7 +38,7 @@ export const JsonNode = ({ id, data }) => {
     <BaseNode
       id={id}
       title="JSON Parser"
-      icon="JSON Parser"               // Need to add icon in future
+      icon={<Braces size={14} strokeWidth={2} />}
       colorScheme="json"
       handles={handles}
     >

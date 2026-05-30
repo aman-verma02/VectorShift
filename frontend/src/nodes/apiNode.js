@@ -7,6 +7,7 @@ import {useState} from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { Globe } from 'lucide-react';
 
 export const ApiNode = ({ id, data }) => {
     
@@ -49,7 +50,7 @@ export const ApiNode = ({ id, data }) => {
     <BaseNode 
       id={id}
       title="API Node"
-      icon="API NoDe"             // need to add icon in future
+     icon={<Globe size={14} strokeWidth={2} />}
       colorScheme="blue"
       handles={handles}
     >

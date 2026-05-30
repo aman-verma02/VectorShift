@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { FileText } from 'lucide-react';
 
 export const TextNode = ({ id, data }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
@@ -75,7 +76,7 @@ export const TextNode = ({ id, data }) => {
     <BaseNode
       id={id}
       title="Text"
-      icon="Test"             // Need a icon in future
+      icon={<FileText size={14} strokeWidth={2} />}
       colorScheme="text"
       handles={allHandles}
       style={{ width: `${textWidth + 48}px` }} 

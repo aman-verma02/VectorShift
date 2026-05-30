@@ -5,7 +5,8 @@
 
 import React from 'react';
 import { Position, Handle } from 'reactflow';
-import './BaseNode.css'                // Importing node-specific styles
+import './BaseNode.css'                // Importing node-specific styles and will be applied to all node 
+import { useStore } from '../store';
 
 export const BaseNode = ({
   id,
@@ -17,25 +18,32 @@ export const BaseNode = ({
   style = {},
 
 }) => {
-
+    const deleteNode = useStore((state) => state.deleteNode );
 
 
   return (
     <div className={`base-node base-node-${colorScheme}`} style={style}>
 
-      {/* Node Header */}
+      {/*------- Node Header------------- */}
       <div className="base-node-header">
         <span className="base-node-icon">{icon}</span>
         <span className="base-node-title">{title}</span>
         <span className="base-node-id">#{id.split('-').pop()}</span>
+        <button
+          className="base-node-delete"
+          onClick={() => deleteNode(id)}
+          title="Delete node"
+        >
+          ×
+        </button>
       </div>
 
-      {/* Node Body / Content */}
+      {/* --------------------Node Body / Content ----------------*/}
       <div className="base-node-body">
         {children}
       </div>
 
-      {/* Node Handles */}
+      {/* ------------------ Node Handles ---------------------*/}
       {handles.map((handle, idx) => (
         <Handle
           key={`${id}-handle-${idx}`}

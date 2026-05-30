@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { useStore } from '../store';
+import { Sparkles } from 'lucide-react';
 
 export const PromptNode = ({ id, data }) => {
 
     const updateNodeField = useStore((state) => state.updateNodeField);  // Get the function to update node data in global store
 
     // Local state initialized with existing data or default values
-    const [currentPrompt, setCurrentPrompt] = useState(data?.prompt || 'Enter your prompt here...');
+    const [currentPrompt, setCurrentPrompt] = useState(data?.prompt || '');
 
     const [variables, setVariables] = useState([]);
 
@@ -70,7 +71,7 @@ export const PromptNode = ({ id, data }) => {
         <BaseNode
             id={id}
             title="Prompt Node"
-            icon="Prompt Node"                           // Need to icon in future
+            icon={<Sparkles size={14} strokeWidth={2} />}
             colorScheme="prompt"
             handles={handles}
         >
@@ -80,7 +81,7 @@ export const PromptNode = ({ id, data }) => {
                     value={currentPrompt}
                     onChange={handlePromptChange}
                     placeholder="Enter your prompt here..."
-                    style = {{ height: '80px', resize: 'vertical' }}
+                    style = {{ height: '80px', resize: 'none' }}
                 />
             </label>
 
@@ -90,14 +91,13 @@ export const PromptNode = ({ id, data }) => {
 
                         <span
                             key={variable}
-                            style = {{ 
-                                backgroundColor: 'lightgray', 
-                                padding: '5px', 
-                                borderRadius: '3px',
-                                fontSize: '0.6rem',
-                                color: 'black',
-                                borderRadius: '3px',
-                                border: '1px solid gray'
+                            style={{
+                                background: 'rgba(236, 72, 153, 0.15)',
+                                color: '#f472b6',
+                                padding: '2px 7px',
+                                borderRadius: '4px',
+                                fontSize: '0.65rem',
+                                border: '1px solid rgba(236, 72, 153, 0.3)',
                             }}
                         >
                             {variable}
