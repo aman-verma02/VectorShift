@@ -1,3 +1,4 @@
+# main.py
 # FastAPI backend endpoint for parsing pipeline and verifying the 'Direct Acyclic Graph' property. This is a placeholder implementation and should be replaced with actual parsing logic.
 
 
@@ -28,10 +29,16 @@ class NodeSchema(BaseModel):
     id: str
     type: str
 
+    class Config:
+        extra = 'allow'      # ignore extra fields from ReactFlow
+
 class EdgeSchema(BaseModel):
     id: str
     source: str
     target: str
+
+    class Config: 
+        extra = 'allow'      # ignore extra fields from ReactFlow
 
 class PipelineSchema(BaseModel):
     nodes: List[NodeSchema]
@@ -91,7 +98,7 @@ def read_root():
                 'message': 'Use the /pipelines/parse endpoint to analyze your pipeline structure.'
             }
 
-@app.post('/pipelines/dag_compute')
+@app.post('/pipelines/parse')
 def parse_pipeline(payload: PipelineSchema) -> Dict[str, Any]:
     """
     Calculates tdetails of the submitted graph pipeline including node counts,
