@@ -61,7 +61,8 @@ uvicorn main:app --reload
 │       ├── submit.js                # Pipeline submission + modal
 │       └── index.css                # Global styles
 └── backend/
-    └── main.py                      # FastAPI DAG analysis endpoint
+    ├── main.py                      # FastAPI DAG analysis endpoint
+    ├── requirements.txt             # List external packages and libraries
 ```
 
 --------------------------------------------------------------------------------------
