@@ -232,8 +232,6 @@ does not require.
 
 If during DFS we encounter a Gray node, we have found a back edge — proof of a cycle. The graph is not a DAG.
 
-
-
 ```python
 def has_cycle(node_id: str) -> bool:
     color[node_id] = 1  # Mark Gray
@@ -271,7 +269,7 @@ DFS is run from every unvisited node to handle disconnected graph components cor
 | Invalid variable names in TextNode | Regex enforces JS identifier rules — rejected silently |
 | Extra ReactFlow fields in payload | Pydantic `extra = 'allow'` handles gracefully |
 
----
+-------------------------------------------------------------------------------------------
 
 ## What I Would Improve With More Time
 
