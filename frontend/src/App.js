@@ -1,3 +1,4 @@
+// App.js
 import { PipelineToolbar } from './toolbar';
 import { PipelineUI } from './ui';
 import { SubmitButton } from './submit';
@@ -8,7 +9,7 @@ function App() {
       
       {/* App Header */}
       <header className="app-header">
-        <h1>VectorShift Pipeline Editor</h1>
+        <h1>Vector<span>Shift</span> Pipeline Editor</h1>
         <p> Drag and Drop odes to construct your AI agent workflow pipelines, extract variables, and test for cycles.</p>
       </header>
       
